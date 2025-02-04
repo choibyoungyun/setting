@@ -12,29 +12,17 @@ call plug#begin('~/.vim/plugged')
  Plug 'majutsushi/tagbar'
  Plug 'nathanaelkane/vim-indent-guides'
  Plug 'tmhedberg/SimpylFold'
- Plug 'jreybert/vimagit'
 
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
- "Python formatter
- Plug 'psf/black'
-
- "FrontEnd (javascript, typescript, html, css)
- "Plug 'mattn/emmet-vim'
- "Plug 'pangloss/vim-javascript'
- "Plug 'mxw/vim-jsx'
- "Plug 'maxmellon/vim-jsx-pretty'
- "Plug 'https://github.com/leafgarland/typescript-vim.git'
- "Plug 'prettier/vim-prettier'
+ Plug 'psf/black', { 'branch': 'stable' }
 call plug#end()
-
-
 filetype plugin indent on    " required
-syntax on
+
 
 " -------------------------------------------------------------------------
-"  DEFAULT Basic Property
+"  DEFAULT Option
 " -------------------------------------------------------------------------
+syntax on
 set encoding=utf-8
 set autoindent
 set cindent
@@ -48,29 +36,43 @@ set textwidth=79
 set expandtab
 set fileformat=unix
 
+set hlsearch
+set showmatch
+
 " -------------------------------------------------------------------------
 "  DEFAULT COLOR & Column
+"  highlight Normal ctermfg=grey ctermbg=darkblue
+"  colo gruvbox , jellybeans
 " -------------------------------------------------------------------------
 set t_Co=256
-"colo gruvbox
-"colo jellybeans
+colo gruvbox
 set bg=dark
 highlight Visual term=reverse cterm=reverse guibg=Grey
 
+" -------------------------------------------------------------------------
+" lien length marker
+" -------------------------------------------------------------------------
 set colorcolumn=81
 highlight colorcolumn  ctermbg=red guibg=red
+
+" -------------------------------------------------------------------------
+"  Trailing White Spaces
+" -------------------------------------------------------------------------
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+set list listchars=tab:→\
 
 " -------------------------------------------------------------------------
-"  auto remove trailing space (c, cpp)
+"  auto remove Trailing space
 " -------------------------------------------------------------------------
-autocmd FileType c,cpp autocmd BufWritePre <buffer> %s/\s\+$//e
+"let g:C_UseTool_cmake   = 'yes'
+"let g:C_UseTool_doxygen = 'yes'
+"autocmd FileType c,cpp,py,go,sh autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " -------------------------------------------------------------------------
-"  override tabstop, shiftwidth (default:4)
+"  type checking  (pyright)
 " -------------------------------------------------------------------------
-autocmd FileType typescript,typescriptreact,javascript,html setlocal ts=2 sts=2 sw=2 expandtab
+"autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
 " -------------------------------------------------------------------------
 "  vim split move
@@ -87,11 +89,6 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
-
-" -------------------------------------------------------------------------
-"  type checking  (pyright)
-" -------------------------------------------------------------------------
-"autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
 " -------------------------------------------------------------------------
 "  formatter setup (Black)
@@ -112,7 +109,6 @@ let g:black_linelength  = 80
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 
-
 " -------------------------------------------------------------------------
 "  indent tool
 " -------------------------------------------------------------------------
@@ -121,37 +117,38 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 let g:indent_guide_exclude_filetype = ['help', 'nerdtree', 'text', 'sh']
 
-
 " -------------------------------------------------------------------------
-"  Tagbar Toggle <F3> {python flake}
+"  command map
 " -------------------------------------------------------------------------
+nmap <F6> :CocCommand document.toggleInlayHint<CR>
 nmap <F7> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :IndentGuidesToggle<CR>
-
 
 " -------------------------------------------------------------------------
 "  airline
 " -------------------------------------------------------------------------
 let g:airline_theme='papercolor'
-let g:airline#extensions#poetv#enabled = 1
+let g:airline#extensions#poetv#enabled = 0
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#tabline#enabled = 1           " enable airline tabline
 let g:airline#extensions#tabline#show_close_button = 0 " remove 'X' at the end of the tabline
 let g:airline#extensions#tabline#tabs_label = ''       " can put text here like BUFFERS to denote buffers (I clear it so nothing is shown)
 let g:airline#extensions#tabline#buffers_label = ''    " can put text here like TABS to denote tabs (I clear it so nothing is shown)
-let g:airline#extensions#tabline#buffer_nr_show = 1    " can put text here like TABS to denote tabs (I clear it so nothing is shown)
-let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer  number format 
 let g:airline#extensions#tabline#fnamemod = ':t'       " disable file paths in the tab
 let g:airline#extensions#tabline#show_tab_count = 0    " dont show tab numbers on the right
 let g:airline#extensions#tabline#show_buffers = 1      " dont show buffers in the tabline
 let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs needed to display the tabline
 let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline
+let g:airline#extensions#tabline#buffer_nr_show = 1    " disable tab numbers
+let g:airline#extensions#tabline#buffer_nr_format = '%s' " disable tab numbers
 let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers
 let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
-"let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_powerline_fonts = 1
-"let g:airline_section_b = '%{getcwd()}' " in section B of the status line display the CWD
+let g:airline_section_b = '%{getcwd()}' " in section B of the status line display the CWD
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " -------------------------------------------------------------------------
 "  NVIM COC recommandation
