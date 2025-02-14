@@ -44,11 +44,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ########################################################
-# java
-########################################################
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-
-########################################################
 # virtualenvwrapper
 ########################################################
 export WORKON_HOME=~/.virtualenvs
@@ -58,24 +53,16 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 ########################################################
 # ssh (Google VM Instance)
 ########################################################
+GCP_ID='your_id'
 GCP_VM_IP='34.105.108.253'
 GCP_PRIVATE_KEY='$HOME/.ssh/gcp_key'
-alias ssh_gcp="ssh -i ${GCP_PRIVATE_KEY}  choi_byoungyun@${GCP_VM_IP}"
+alias ssh_gcp="ssh -i ${GCP_PRIVATE_KEY}  {GCP_ID}@${GCP_VM_IP}"
 
 ########################################################
-# TurtleShip
+# mysql prompt
 ########################################################
-export PROD_IP="52.78.90.91"
-export DEV_IP="13.124.121.176"
-
-alias prod_ssh="ssh bychoi@${PROD_IP}"
-alias prod_sftp="sftp bychoi@${PROD_IP}"
-alias dev_ssh="ssh bychoi@${DEV_IP}"
-alias dev_sftp="sftp bychoi@${DEV_IP}"
-alias prod_mysql='mysql --prompt="(PROD)[\d]" -h ${PROD_IP} -D tc_drf_service_tobe -u bychoi -p'
-alias dev_mysql='mysql --prompt="(DEV)[\d]" -h ${DEV_IP} -D tc_api_dev_tobe -u bychoi -p'
-alias vbox_mysql='mysql --prompt="(\h)[\d]" -D vbox_turtle -u bychoi -p'
-alias vbox_mysql_oauth='mysql --prompt="(\h)[\d]" -D vbox_oauth -u bychoi -p'
+#alias vbox_mysql='mysql --prompt="(\h)[\d]" -D vbox_turtle -u bychoi -p'
+#alias vbox_mysql_oauth='mysql --prompt="(\h)[\d]" -D vbox_oauth -u bychoi -p'
 
 ########################################################
 # alias
@@ -83,7 +70,4 @@ alias vbox_mysql_oauth='mysql --prompt="(\h)[\d]" -D vbox_oauth -u bychoi -p'
 export EDITOR='vim'
 alias ls='ls -CF'
 alias edit='$EDITOR'
-alias mlog='tail -f /var/log/mysql/mysql.log'
 alias git_log='git log --pretty=format:"%h - %an, %ar : %s"'
-
-

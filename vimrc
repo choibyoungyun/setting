@@ -101,7 +101,7 @@ let g:SimpylFold_docstring_preview=1
 "  let g:black_quiet (defaults to 0)
 "  let g:black_linelength  = 80
 " -------------------------------------------------------------------------
-let g:black_linelength  = 80
+let g:black_linelength  = 79
 
 " -------------------------------------------------------------------------
 "  XML editing
