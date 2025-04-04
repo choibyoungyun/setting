@@ -1,0 +1,17 @@
+{
+    "inlayHint.enable": false,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.formatting.provider": "black",
+    "clangd.enabled": true,
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/19.1.2/clangd_19.1.2/bin/clangd",
+    "clangd.arguments": ["--background-index", "--clang-tidy"],
+    "clangd.fallbackFlags": [
+        "-I/home/bychoi/work/transcoder/include",
+        "-I/home/bychoi/work/transcoder/include/kcmvp",
+        "-I/home/bychoi/work/transcoder/usr/include/opus"
+    ],
+    "clangd.trace.server": "verbose",
+    "clangd.trace.file": "/tmp/clangd.log"
+}

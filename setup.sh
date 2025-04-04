@@ -23,7 +23,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # 4. NVM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+$curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash$nvm install --lts
+
 
 # 5. Virtualenv
 $sudo apt install python3-pip
