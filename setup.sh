@@ -28,5 +28,14 @@ $curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 # 5. Virtualenv
 $sudo apt install python3-pip
-$python3 -m pip install --user -U virtualenv --break-system-packages
-$python3 -m pip install --user -U virtualenvwrapper --break-system-packages
+$python3 -m pip install --user --upgrade virtualenv
+$python3 -m pip install --user --upgrade virtualenvwrapper
+
+# 6. vim compile
+# ./configure \
+#   vim_cv_timer_create=no \
+#   --with-features=huge \
+#   --enable-multibyte \
+#   --enable-pythoninterp \
+#   --prefix=$HOME/.local \
+
