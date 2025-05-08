@@ -36,6 +36,7 @@ $python3 -m pip install --user --upgrade virtualenvwrapper
 #   vim_cv_timer_create=no \
 #   --with-features=huge \
 #   --enable-multibyte \
-#   --enable-pythoninterp \
+#   --enable-pythoninterp=yes \
+#   --enable-python3interp=yes \
 #   --prefix=$HOME/.local \
 
