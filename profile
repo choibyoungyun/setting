@@ -64,10 +64,11 @@ GCP_PRIVATE_KEY='$HOME/.ssh/gcp_key'
 alias ssh_gcp="ssh -i ${GCP_PRIVATE_KEY}  {GCP_ID}@${GCP_VM_IP}"
 
 ########################################################
-# mysql prompt
+# JANUS (set virtualenv:postactivate, predeactivate)
 ########################################################
-#alias vbox_mysql='mysql --prompt="(\h)[\d]" -D vbox_turtle -u bychoi -p'
-#alias vbox_mysql_oauth='mysql --prompt="(\h)[\d]" -D vbox_oauth -u bychoi -p'
+#export JANUS_HOME=$HOME
+#export LD_LIBRARY_PATH=$JANUS_HOME/lib:$JANUS_HOME/lib/x86_64-linux-gnu
+
 
 ########################################################
 # alias
@@ -76,3 +77,6 @@ export EDITOR='vim'
 alias ls='ls -CF'
 alias edit='$EDITOR'
 alias git_log='git log --pretty=format:"%h - %an, %ar : %s"'
+#alias vbox_mysql='mysql --prompt="(\h)[\d]" -D vbox_turtle -u bychoi -p'
+#alias vbox_mysql_oauth='mysql --prompt="(\h)[\d]" -D vbox_oauth -u bychoi -p'
+

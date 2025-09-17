@@ -1,0 +1,21 @@
+#!/bin/bash
+# This hook is sourced after this virtualenv is activated.
+
+if [[ -n $PATH ]]; then
+    export OLD_PATH=$PATH
+fi
+
+if [[ -n $LD_LIBRARY_PATH ]]; then
+    export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+fi
+
+export PROV_HOME="$HOME/work/provision"
+export PATH=${PROV_HOME}/bin:$PATH
+export LD_LIBRARY_PATH=$PROV_HOME/lib:$LD_LIBRARY_PATH
+
+alias cdsrc='cd $PROV_HOME/src'
+alias cdbin='cd $PROV_HOME/bin'
+alias cdconf='cd $PROV_HOME/conf'
+alias cdlog='cd $PROV_HOME/log'
+alias cdlib='cd $PROV_HOME/lib'
+alias cdtest='cd $PROV_HOME/test'
